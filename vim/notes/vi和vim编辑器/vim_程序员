@@ -1,0 +1,71 @@
+1:折叠与大纲
+	1:折叠命令
+		zf	5zF		创建折叠
+		zd	zD		删除折叠
+		zc			关闭折叠
+		zo			打开折叠
+		zE			去除所有折叠
+		za	zA		切换折叠状态
+		zj	zk		移动光标到上/下一个折叠的位置
+	
+	2:手动折叠:
+		zf%			// 折叠一块代码块
+		zfgg		// 折叠到文件开头处
+		zf3j		
+	
+	3:设置选项:
+		:set foldenable				// 确认折叠功能已经打开
+		:set foldcolumn=3			// 设置可视折叠线索使用的列数
+		:set foldlevel=3			// 折叠层次
+		:set foldmethod=indent		// vim的伪大纲折叠形式,方便观察;
+		:set foldmethod=syntax
+		对折叠的操作会影响到折叠内的所有行
+
+2:自动智能缩排:
+	autoindent
+	smartindent
+	cindent
+		cinkeys		// 定义让vim重新估算缩排的键盘按键组合
+		cinoptions	// 定义缩排样式
+		cinwords	/ 定义标识着vim应用于后续内容行中加入额外缩排的关键字
+	indentexpr
+
+3:关键字与字典词补全:
+	1:整行补全:
+		<C-X><C-L>			<C-E> 取消补全
+	2:以文件中的关键字补全:
+		<C-N>		<C-P>
+	3:以dictionary补全:
+		set dictionary=/usr/share/words
+		<C-X><C-K>
+	4:以thesaurus补全
+		<C-X><C-T>
+	5:以当前文件及包含文件中的关键字补全
+		<C-X><C-I>
+	6:以标签补全:
+		<C-X><C-J>
+	7:以宏定义名称补全:
+		<C-X><C-D>
+	8:以用户函数补全
+		<C-X><C-u>
+	9:以omni函数补全
+		<C-X><C-O>
+	10:拼写建议补全
+		<C-X><C-S>
+4:使用标签:(tag)
+	:!ctag src/*
+	:tag name <enter>
+5:语法高亮:
+	:syntax enable
+	:syntax on
+	:set syntax=sh
+6:用vim编译与检查错误:
+7:编辑二进制文件:
+	1:
+		vim -b
+		:set binary
+	2:为了辅助二进制编辑并避免破坏文件的完整性:
+		textwidth与wrapmargin设置为0,以免vim在文件中Haru伪造的newline序列
+		modeline和expandtab不设置(nomodeline和noexpandtab),以免vim用tab增加
+		shiftwidth的空间,并避免vim在模式行(modeline)里解释命令,否则有可能设置
+		某些选项造成意外的作用

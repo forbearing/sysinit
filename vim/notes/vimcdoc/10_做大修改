@@ -1,0 +1,126 @@
+1:记录与回放
+	q{register}q		记录命令
+	@{register}			回放命令
+	3@{register}
+	@@					使用上一次使用的寄存器
+	@n					使用n次寄存器
+	qC/word<Enter>q		对寄存器c进行追加
+		大写寄存器表示对小写寄存器的追加
+
+
+2:替换与命令范围
+	:s{ubstitube}	字符串替换命令
+	:p				打印,用于命令行执行打印除最后一个被修改过的行
+	:[range]s{ubstitube}/from/to/[flags]
+	range:
+		%		作用于全部行
+		5		某个指定的行
+		1,5		1-5行上执行命令,包括第5行
+		.,$		当前行,最后一行
+		.,.+4	指定行数
+		't,'b	使用标记
+		:'<,'>	可视模式下的范围(即使使用了<C-V>,作用的仍然是行而不是块)
+			'<		可视模式的开始
+			'>		可视模式的结尾
+		:'<,$	很合标记
+	flags:
+		g	global,全局,替换一行中所有被匹配的匹配点(否则只替换第一个匹配点)
+		c	confirm,每次替换前询问是否需要替换
+		e	:s[ubstitube]命令找不到不是错误
+	回答
+		y	执行替换
+		n	不执行替换
+		a	对剩下的所匹配点执行替换,不需要确认
+		q	退出,不再执行任何替换
+		l	替换完当前匹配点后退出
+	:.write otherfile	保存当前行为另一个文件
+	:?^Chapter?,/^Chapter/s=grey=gray=g
+		把书中的第一章的所有grey替换成gray
+		"?^Chapter?",用于查找前一个"Chapter","?pattern?"用于向前查找
+		"/^Chapter/",用于向后查找
+		"="字符代替斜杠,使用斜杠或使用其他字符也可以
+	/Chapter/-1		匹配点的前一行
+	/Chapter/+2		匹配点下的第二行
+
+	:5s/old/new/g
+	:5,10s/old/new/g
+	:.,$s/old/new/g
+	:%s/old/new/g
+	:.,.+10s/old/new/g
+	:/root/,/en/s/old/new/g
+	:/root/,/^en/s/old/new/g
+	:/root/,+10s/old/new/g
+	:?old?,/old/s/old/hello/g
+	't,'bs/old/new/g
+	:'<,$s/old/new/g
+
+
+4:global命令
+	":global"是Vim中一个最强大的命令(之一),它允许你找到一个匹配点并且
+	在哪里执行一个命令
+	:[range]global/{pattern}/{command}
+	备注:
+		global中执行的命令只能是冒号命令,普通模式命令不能在这里使用,
+		如果需要,可以受用:normal
+
+5:可视列块模式
+	CTRL-V<范围>I<输入内容><esc>		可视模式下的插入文本
+		如果选中的块经过一个短块,并且没有任何内容包含在可视列块中,
+		则新的文本不会被插入到该行
+	c/s			删除可视块(I)
+	C			删除可视块开头到行尾部分(I)
+	S			删除可视块所在行(I)
+	d/x			删除可视块
+	D			删除可视块开头到行尾部分
+	rx			全部替换成字符x
+	~			交换大小写
+	U			转换成大写
+	u			转换成小写
+	>			右平移(平移单位由:set shiftwidth=4 决定)
+	<			左平移
+	J			删除可视块所在行的换行符
+	gJ			不改变空白字符
+
+
+6:读写文件的
+	:r{ead} patch		将文本插入到光标下面
+	:$r patch			将文本插入到当前文件的最后
+	:0r patch			将文本插入到当前文件的开头
+	:write tempo		文件存在会报错
+	:.,$write tempo		
+	:.,$write! tempo
+	:.w >> add			追加
+	:saveas tmp.
+
+
+7:排版文字
+	:set textwidth=72	输入文本时的自动换行
+	gqap		排版当前段落
+		"gq",操作费
+		"ap","a paragraph"
+		段与段之间的分隔符是空行,只包含空白字符的空白行不能分割一段
+	gggqG		排版整个文档
+	gqj			排版当前行
+
+8:改变大小写:
+	gUw|b  gUaw  gUgg gUG  gUas  gUl	大写
+	gu			小写,可用于动作命令(w,b,l),文本对象(aw,as,is),可视模式
+	g~			交换大小写
+	gugu|guu	改变一行(模仿dd和cc)
+	gUgU|gUU
+	g~g~|g~~
+	
+
+9:使用外部程序
+	{motion}{program}	用一个外部程序对文本块进行过滤
+		文本块作为输入,{program}指定的外部命令进行过滤
+		程序的输出替代选中的文本块
+	!5G <==> :.,.+4!	5G,移动到第5行
+	!!date				对当前行执行过滤命令(date命令结果覆盖本行)
+	!5Gsort
+	:read !ls			读入哪个的输出结果,并插入到光标下
+	:read !date
+	:0read !date -u
+	:write !wc -w		用wc统计单词数目(不要写成了 :w! wc -w)
+	CTRL-L				重画屏幕
+		如果外部程序出现错误,屏幕可能会乱掉

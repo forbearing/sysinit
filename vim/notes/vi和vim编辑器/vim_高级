@@ -1,0 +1,33 @@
+7:高级编辑方法:
+	1:set命令:只能改变两种类型的选型,一种是切换选项(只能选择是或否),另一种
+	可接受数值或字符值
+		:set all				// 显示选项的完整列表,包括用户的设置值
+		:set window?			// 显示选项的当前值
+		:set ic/noic			// 搜索忽略大小写
+		:set window=20			// 设置屏幕窗口显示的行数
+	2: .exrc文件(由ex读入)
+		set exrc
+		:so(source) .progoptions
+	3:通过命令过滤文本:
+		:1,11!sort				// 对指定行进行命令操作
+		!)sort					// 对一段文本进行命令过滤
+		4!!sort					// 对4行进行命令操作
+		!4!sort					// 同上
+	4:单词缩写:
+		缩写所用的字符不能同时出现在所代表的词组的结尾
+		:ab imrc "International Materials Research Center"
+		:unab imrc
+		:ab						// 列出所有定义的缩写
+	5:使用map命令
+		:map					// 列出所有被映射的字符
+		:map sequence
+		:unmap sequence
+		:map t dwelp			// 颠倒两个单词的顺序
+	6:使用标签:(tag)
+		:!ctag src/*
+		:tag name <enter>
+	7:语法高亮:
+		:syntax enable
+		:syntax on
+		:set syntax=sh
+	8:用vim编译与检查错误:

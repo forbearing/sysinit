@@ -1,0 +1,4 @@
+vim
+tmux
+fish
+zsh

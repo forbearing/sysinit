@@ -1,0 +1,20 @@
+1:跳转
+	CTRL-L		跳转到当前光标下的单词的相关主题
+	CTRL-O		回跳(重复这个动作可以回跳多次)
+
+2:安装vim之后
+	:set compatible
+	:scriptname
+
+3:教程使用说明:
+	vimtutor,可以任意修改,不用担心会损坏原始文件
+	vimtutor fr
+	vim -u		使用指定的<vimrc>代替~/.vimrc  (vim -u NONE)
+	vim -c ":set nonu"
+
+4:vim相关目录
+	变量 VIMRUNTIME 值为 /usr/share/vim/vim81
+	$VIMRUNTIME/plugin		全局插件存放目录
+	$VIMRUNTIME/ftplugin	文件类型插件存放目录
+	$VIMRUNTIME/syntax		语法高亮检测配置文件存放目录
+	$VIMRUNTIME/colors		颜色配色方案存放目录

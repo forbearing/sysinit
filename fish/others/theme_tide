@@ -1,0 +1,9 @@
+https://github.com/IlanCosman/tide
+
+
+Installation
+    * Fish ≥ 3.2.0 - Using an older version of Fish?
+    * A Nerd Font installed and enabled in your terminal (for example the recommended font).
+    fisher install IlanCosman/tide
+
+tide configure

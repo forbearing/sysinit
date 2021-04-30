@@ -1,0 +1,112 @@
+	1:命令
+	tmux ls						# 在会话外获取会话列表
+	tmux attach -t <session>	# 在会话外进入会话
+	tmux a -t <session>			# 同上
+	tmux attach					# 进入第一个会话
+	tmux a						# 同上
+	tmux show -g				# 显示当前tmux设置
+	tmux new -s <name>			# 启动一个session
+	
+	<C-b> d						# 临时退出但不删除会话
+	<C-b> :kill-session			# 会哈退出并删除session
+	<C-b> :kill-server			# 删除所有会话
+	tmux kill-session -t <session>		# 在会话外删除会话
+	tmux new -s <Session>		# 创建会话
+	<C-b> :new -s <Session>		# 创建会话
+
+2:会话
+	s						# list session
+	$						# 重命名session
+
+3:窗口
+	c						# 创建窗口
+	w						# 查看窗口列表
+	<NUM>					# 切换到制定窗口
+	n						# 切换到下一个窗口
+	p						# 切换到上一个窗口
+	l						# 在两个相邻的窗口切换
+	,						# 重命名窗口
+	f '						# 在多个窗口中搜索关键字
+	&						# 删除窗口
+
+4:窗格:
+	%						# 垂直分割
+	"						# 水平分割
+	o						# 按顺序在窗格之间移动
+	q						# 显示pane编号
+	t						# 显示时间
+	&						# 关闭当前窗口
+	x						# 删除一个窗格
+	z						# 最大化/最小化窗口
+	!						# 移动一个pane到新的windowns
+	{						# 与上一个窗格交换位置
+	}						# 与下一个窗格交换位置
+	[						# 文本复制模式
+	<C-o>					# 按顺序移动pane位置
+	<space>					# 更换pane排版
+	:resize-pane -U {num}	# 向上
+	:resize-pane -D			# 向下
+	:resize-pane -L			# 向左
+	:resize-pane -R			# 向右
+	:resize-pane -t 2 -L 20		# 编号为 2 的窗格向左扩大 20 格
+	swap-window -s 3 -t 1  交换 3 号和 1 号窗口
+	swap-window -t 1       交换当前和 1 号窗口
+	move-window -t 1       移动当前窗口到 1 号
+	:joinpane -t <name>	# 移动pane合并到某个windows
+
+
+5:其他:
+	<C-b> ?						# 显示快捷键
+	tmux show-options -g |grep prefix
+	tmux -V
+
+
+===========================================================================
+1:设置<prerfix>
+	unbind C-b			# unbind ^b
+	set -g prefix C-s	# set -g prefix 'C-a'
+2:启用鼠标
+	set -g mouse on
+3:设置默认shell
+	set -g default-shell /usr/bin/zsh
+4:Tmux动态加载配置文件
+	bind r source-file ~/.tmux.conf \; display-message "Config reloaded"
+5:窗格切换
+	bind h select-pane -L
+	bind j select-pane -D
+	bind k select-pane -U
+	bind l select-pane -R
+6:调整窗格大小
+	bind H resize-pane -L 10  # 向左扩展
+	bind J resize-pane -D 5   # 向下扩展
+	bind K resize-pane -U 5   # 向上扩展
+	bind L resize-pane -R 10  # 向右扩展
+7:拷贝
+	bind Escape copy-mode
+	bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+	bind-key -Tcopy-mode-vi 'y' send -X copy-selection
+	unbind p
+	bind p pasteb
+	set -g mode-keys vi      # Vi风格选择文本
+
+
+
+
+生产配置文件
+
+set -g default-shell /usr/bin/fish
+set -g mouse on
+unbind C-b          # unbind ^b
+set -g prefix C-s   # set -g prefix 'C-a'
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+bind H resize-pane -L 10  # 向左扩展
+bind J resize-pane -D 5   # 向下扩展
+bind K resize-pane -U 5   # 向上扩展
+bind L resize-pane -R 10  # 向右扩展
+
+set -g default-terminal "screen-256color"

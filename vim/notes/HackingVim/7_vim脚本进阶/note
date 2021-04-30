@@ -1,0 +1,27 @@
+1:变量的访问:
+	$		访问环境变量
+	&		访问vim选项
+		echo &sessionoptions
+		echo &ff
+	@		访问寄存器寄存器
+
+2:按键映射:
+	按键映射可以是函数调用,变量设置等
+	if !hasmapto('<Plug>MyscriptMyfunctionA')
+		map <unique> <Leader>a <Plug>MyscriptMyfunctionA
+	endif
+	hasmapto():	用于检查某个函数映射是否存在的函数
+	<unique>:	如果存在相同映射,则报错
+	<Leader>:	由用户决定使用哪个映射前导字符, 
+				<Leader>将会被全局变量mapleader的值所替换
+	<Plug>:		为一个函数建立一个唯一的全局标识符,这样,就不会和全局作用域
+				中的函数产生冲突
+	:help <SID;>
+	:help 'script-local'
+
+3:脚本类型
+	1:作用域标记s:把函数作用域限定在脚本内
+	2:vim脚本类型:
+		文件类型插件	:help 'write-filetype-plugin'
+		编译器插件		:help 'write-compiler-plugin'
+		库函数脚本		:help 'write-library-script'

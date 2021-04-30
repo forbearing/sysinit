@@ -1,0 +1,99 @@
+http://ftp.vim.org/pub/vim/runtime/spell/zh.ascii.spl
+
+
+
+0:vim配置文件
+	1:
+		echo $VIM
+		vimrc
+		exrc
+		gvimrc
+	2:vimrc中使用source来吧其他配置文件作为配置信息的来源
+
+1:修改字体
+	vim的字体与终端字体一致,gvim可以随意修改字体
+		:set guifont=Couier\ 14
+			Couier: 字体名字
+			14: 字体大小
+		:set guifont=*		# 打开选择字体的窗口
+
+2:修改配色方案
+	:colorscheme NAME		# 没有等于号
+
+3:个性化的高亮
+	:so $VIMRUNTIME/syntax/hitest.vim		# 查看所有的vim色彩组
+		so: source
+		$VIMRUNTIME: /usr/share/vim/vim74
+	:match ErrorMsg /^Error/
+		ErrorMsg: 色彩组
+		/^Error/: 正则表达式,可以很简单,也可以相当复杂
+	:highlight MyGroup ctermbg=red guibg=red gctermfg=yellow
+						guifg=yellow term=bold
+	:highlight MyGroup term=bold ctermbg=red ctermfg=yellow
+		ctermbg: 控制台环境下的背景色
+		guibg: Gvim环境下的背景色
+		ctermfg: 控制台环境下的文本颜色
+		guifg: Gvim环境下的文本颜色
+		gui: Gvim环境下的字体格式
+		term: 控制台环境下的字体格式(比如粗体:bold)
+	颜色的种类:
+		black,	brown, white
+		gray, lightgray, darkgray
+		red, lightblue, darkred
+		blue, lightblue, darkblue
+		green, lightgreen, darkblue
+		yellow, hightyellow, darkyellow
+	:match NONE
+	:2match				# 匹配命令一次只能匹配一个模式,但是vim提供了
+	:3match				# 一次匹配至多3个模式
+	:match ErrorMsg /\%>73v.\+/
+		一行内的73个字符之后的那些字符都会被标记成错误
+		\%>		匹配该列之后的内容,列号紧跟在尖括号的右边
+		73		列号
+		v		只能工作在可见的列上面
+		.\+		匹配一个或多个任意的字符
+	:match ErrorMsg /[^\t]\zs\t\+/
+		\zs		一个宽度为0的匹配,它把"匹配"置于一行的开始,并忽略
+				任意的字符
+		\t\+	匹配一个或多个制表符
+	
+4:更丰富的状态栏
+	:set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%0.3.3b]\ [HEX=\%0.2.2B]\ [POS=%0.41,%04v]\ [%p%%]\ [LEN=%L]
+	:set laststautet=2			# 显示状态栏
+
+
+5:切换菜单与工具条
+6:添加自己的菜单与工具条按钮
+	:set showtabline=1			# 显示状态栏
+
+
+7:个性化的工作区
+	:set cursorline
+	:set cursorcolumn
+	:set numberwidth=			# 设置行号占据的列宽
+	用户可以通过LineNr来改变行号及其所在列的风格
+	:highlight LineNr ctermfg=lightblue
+
+	:set spell					# 打开拼写检查
+	:set spelllang=en,da,de,it	# 拼写检查语言对象,默认是英语
+	:set spellsuggest=
+
+	:ab[breviate]				# 创建所有模式下的使用的缩写
+	:iab[brev]					# 创建只能在插入模式下中使用的缩写
+	:cab[brev]					# 创建只能在命令行中使用的缩写
+
+	:map			# 按键绑定,用于所有模式(普通,可视,插入,命令行)
+	:nmap						# 只能用于普通模式
+	:vmap						# 可视模式
+	:cmap						# 命令行模式
+	:imap						# 插入模式
+	特殊按键的特殊记号
+		<BS> 退格				<Tab> 制表符		<Space> 空格
+		<CR> 回车				<Enter> 回车		<Return> 回车
+		<Up> 方向键,上			<Down> 方向键,下
+		<left> 方向键,左		<Right>方向键,下
+		<PageUp> 下一页			<PageDown> 上一页
+		<Home> 返回行的开始		<End> 返回行的结尾
+		<Insert> 插入			<Del> 删除
+		<F1>-<F12> 功能键,从F1到F12			#1,#2,..,#9,#0 F1-F10	
+		<C-s>			<A-s>		<M-s>

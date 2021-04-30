@@ -1,0 +1,59 @@
+1:更正
+
+2:显示匹配
+	:set showmatch		键入')',自动匹配'('
+	:set matchtime		设置显示匹配停顿的时间,默认值为5(0.5秒)
+
+3:补全
+	Vim补全搜索的地方
+		1:当前文件
+		2:其他窗口内的文件
+		3:其他载入的文件(隐藏缓冲区)
+		4:未载入的文件(非激活缓冲区)
+		5:标签文件
+		6:被当前文件以 #include 语句包含的头文件
+	<C-P>			向上搜索
+	<C-N>			向下搜索
+	:set complet		设定搜索顺序
+	:set ignorecase		搜索匹配忽略大小写
+	<C-X> <C-F>			文件名
+	<C-X> <C-L>			整行
+	<C-X> <C-D>			宏定义(包括包含文件里的)
+	<C-X> <C-I>			当前文件以及包含所包含的文件
+	<C-X> <C-K>			字典文件内的单词
+	<C-X> <C-T>			同义词词典文件内的单词
+	<C-X> <C-]>			标签
+	<C-X> <C-V>			Vim命令行
+	<C-X> <C-O>			补全源代码
+
+4:重复一次插入
+	<C-A>				重复一次插入
+	<C-@>				完成<C-A>后退出插入模式
+
+5:从零一行拷贝
+	<C-Y>				拷贝上一行字符
+	<C-E>				拷贝下一行字符
+
+6:插入一个寄存器内容
+
+7:缩写
+	:iabbrev ad advertisement
+	:iabbrev JB Jack Benny
+	:abbreviate teh the
+	:abbreviate			缩写列表
+	c	命令行模式	:cabbrev
+	!	插入模式和命令行模式	:abbreviate
+	:unabbreviate JB	删除缩写(还有iunabbreviate)
+	:abclear			删除所有缩写(还有abclear)
+
+8:插入特殊字符
+
+9:二合字母
+	:digraphs			查看二合字母列表
+	<C-K> Co
+	:digraph a" ä		自定义二合字母
+	:digraph a" 228		也可以用十进制指定这个特殊字符
+
+
+10:普通模式命令
+	<C-D>				在插入模式临时进入普通模式

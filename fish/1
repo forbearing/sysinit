@@ -1,0 +1,47 @@
+omf theme
+    clearance
+    agnoster
+    eden
+    edan
+
+centos8
+    wget https://download.opensuse.org/repositories/shells:fish:release:3/CentOS_8/shells:fish:release:3.repo
+    yum install fish
+
+
+fish_default_key_bindings
+fish_vi_key_bindings
+
+
+设置环境变量
+vi ~/.config/fish/config.fish   
+    set -x PATH /opt/k8s/bin /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+
+
+
+
+平台
+    omf             https://github.com/oh-my-fish/oh-my-fish
+    fisher          https://github.com/jorgebucaran/fisher
+
+
+
+fisher
+    installation
+        curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+    Quickstart
+        fisher install ilancosman/tide                  # install plugin
+        fisher install jorgebucaran/nvm.fish@2.1.0      # specific plugin
+        fisher install ~/path/to/plugin                 # install plugin from local dir
+        fisher update
+    Listing plugins
+        fisher list
+        fisher list \^/                                 # list command also accepts a regular expression to filter the output.
+    Updating plugins
+        fisher update jorgebucaran/fisher
+    Removing plugins
+        fisher remove jorgebucaran/nvm.fish@2.1.0       # Remove installed plugins
+        fisher list | fisher remove                     # remove everything, including Fisher.
+
+
+Plugin

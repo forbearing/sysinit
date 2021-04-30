@@ -1,0 +1,145 @@
+1:跳跃
+	Ctrl - ]			跟着 link/tag 转入
+	Ctrl - o			回到上一次的 jump
+	Ctrl - i			跳回下一个
+	:ju					显示所有的可以跳跃的地方
+2:重做/恢复
+	u					undo
+	Ctrl - u			redo
+	:undo 2				undo to tree 2
+	:undolist			显示所有的 undo 列表
+	:earlier 10s		undo 到 10 秒前的编辑
+	:earlier 10h		undo 到 10 小时前的编辑
+	:earlier 1m			undo 到 1分钟钱
+3:打印
+	:hardcopy			打印 vim 中的内容
+4:将文件转换成 HTML 格式
+	:source $VIMRUNTIME/syntax/2html.vim > wokao
+5:格式
+	:set fileformats
+	:set ff=unix		设定文件格式为 unix 格式
+	:set ff=dos			设定文件为 dos 格式
+	:set ff				检查当前文件格式
+	如果改变文件格式，直接 :w 存档就会变成新的格式
+6:加密
+	vim -x file
+7:vim 语法显示
+	:syntax enable		打开语法的颜色显示
+	:syntax clear		关闭语法颜色
+	:syntax off			完全关闭全部语法功能
+	:syntax manual		手动设定语法
+8:手动输入特殊字符
+	Ctrl - v			编码就行
+9:自动完成
+	Ctrl - p/n
+	Ctrol-x Ctrol-o		代码自动补全
+10:自动备份
+	:set backup				开启备份
+	:set backpuext=.bak		设定备份文件后缀
+	:set patchmode=.orig	设定原始文件的后缀
+11:保存和退出
+	:e filename			打开一个文件名为 filenmame 的文件
+	:e! filename		强制打开一个文件，所有为保存的文件都会丢失
+	:saves filename		另存为
+12:编辑指令
+	gr					不影响格局布置的替换
+	gu					变成小写
+	gU					变成大些
+13:书签
+	m{a-zA-Z}			保存书签，小写的是文件书签、大写的是全局书签
+	‘{a-zA-Z}			跳转到某个书签，
+	‘0					跳转入现有编辑的文件中上次退出的位置
+	''					跳转如最后一次跳转的位置
+	‘’‘					跳转至最后一次编辑的位置
+	g'{mark}			跳转到书签
+	:delm{marks}		删除一个书签
+	:delm!				删除所有暑期啊
+	:marks				显示系统全部书签
+14:标志
+	:ta					跳转入标志
+	:ts					显示匹配标志，并跳转入某个标志
+	:tags				显示所有标志
+15:运行外部命令
+	:!					直接运行 shell 中的一个外部命令
+	:!make				直接在当前目录下运行 make 指令
+	!r !ls				读取外部指令的命令的输入，写入 VIM 中
+	!2r !date -u		将外部命令的结果卸乳 vim 的第三行
+	:w !wc				将 VIM 的内容交给外部指令来处理
+	!!date
+16:多文件编辑
+	:next!
+	:wnext
+	:previous!
+	:last
+	:first
+	:args				查看目前正在正在编辑的文件名
+	:set autowrite		设定自动保存，当你编辑下一个文件的时候，目前编辑的文件如果改动会自动保存
+	:set noautowrite	关闭自动保存
+	:hide e abc.txt		隐藏当前文件，打开一个新文件 abc.txt 进行编辑
+	:buffers			显示所有 vim 中的文件
+	:buffer2			编辑文件中的第二个
+17:分屏
+	:split
+	:split file
+	:vsplit
+	:{d}split			设定分屏的行数
+	Ctrl-w /j/k/h/l
+	Ctrl-w -/+
+	Ctrl-w t/b
+	:close				关闭一个分出来的屏
+	:only				退出所有屏
+	:qall				退出所有屏
+	:wall
+	:wqall
+	:qall!
+	:diffsplit file
+	:diffpatch filename
+	:vert diffsplit file
+	:vert diffpatch file
+18:tab
+	:tab split file
+	gt					到下一个 tab
+	gT					到上一个 tab
+	0gt					跳到第一个 tab
+	5gt					跳到第五个 tab
+19:折叠
+	zo				open
+	zO				将光标下所有折叠打开
+	zR				打开所有
+	3zr				打开一定数量
+
+	zc				close
+	zC				将光标下所有折叠关闭
+	zM				关闭所有折叠
+
+	zf				fold
+	zm				折叠一定数量
+	zd				delete
+	zD				将光标下所有折叠删除
+
+	zn				关闭折叠功能
+	zN				开启折叠功能
+	:set foldmethod=indent
+20:保存
+	:mkview
+	:loadview
+	:mkview 2		保存记录到寄存器2
+	:loadview 3
+21:常用指令
+	:set ic					不区分大小写
+	:set noic
+	K						man 下搜索当前档次
+	{0-9}K					查看当前光标下 man 中的章节
+	:history
+	:e! https://www.google.com/index.html
+	:cd						更换 vim 中的目录
+	:pwd
+	gf						打开文件
+22:记录指令
+	q{a-z}			在某个寄存器中记录指令
+	q{A-Z}			将指令插入之前的寄存器
+	q				结束记录
+	@{a-Z}			执行寄存中指令
+	@@				重复上一次的指令
+23:搜索
+

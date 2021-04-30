@@ -1,0 +1,73 @@
+zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    git clone https://github.com/robbyrussell/oh-my-zsh
+
+    upgrade_oh_my_zsh
+    uninstall_oh_my_zsh
+    omz update
+    p10k configure
+
+    ZSH_THEME="random"
+    ZSH_THEME_RANDOM_CANDIDATES=(
+      "robbyrussell"
+      "agnoster"
+    )
+    ZSH_THEME_RANDOM_IGNORED=(pygmalion tjkirch_mod)
+
+    plugins=(
+        git
+        bundler
+        dotenv
+        osx
+        rake
+        rbenv
+        ruby
+    )
+
+
+Fonts
+    Nerd Fonts
+        https://github.com/ryanoasis/nerd-fonts
+        https://www.nerdfonts.com
+        brew tap homebrew/cask-fonts
+        brew install --cask font-hack-nerd-font
+
+    Powerline fonts
+        common
+            https://github.com/powerline/fonts
+            cd fonts
+            ./install.sh
+            ./uninstall.sh
+        apt-get install fonts-powerline
+
+
+Plugins
+    autojump
+        brew install autojump
+        port install autojump
+
+    zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-autosuggestions
+        mv zsh-autosuggestions ~/.oh-my-zsh/plugins
+        vi ~/.zshrc
+            plugins=(
+                osx
+                zsh-autosuggestions
+                )
+    zsh-syntax-highlighting
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git  ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+        plugins={ zsh-syntax-highlighting }
+
+    zsh-history-substring-search
+        git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/plugins/zsh-history-substring-search
+        plugins={ zsh-history-substring-search }
+
+
+
+powerlevel10k
+    git clone https://github.com/romkatv/powerlevel10k
+    mv powerlevel10k ~/.oh-my-zsh/themes
+    vi ~/.zshrc
+        ZSH_THEME="powerlevel10k/powerlevel10k"
+    p10k configure
