@@ -1,0 +1,40 @@
+https://segmentfault.com/a/1190000003962806
+
+1:Python 代码缩紧
+    缩进要符合PEP8标准. 其次,更好地处理自动缩进。
+    对于全栈开发,可以设置针对每种文件类型设置 au 命令
+    
+    PEP8
+        au BufNewFile,BufRead *.py
+        \ set tabstop=4
+        \ set softtabstop=4
+        \ set shiftwidth=4
+        \ set textwidth=79
+        \ set expandtab
+        \ set autoindent
+        \ set fileformat=unix
+    - 确保每行代码不超过 80 个字符
+    - 并且会以 unix 格式存储文件,避免在推送到 Github 或分享给其他用户出现文件转换问题
+
+    au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+
+    自动缩进有用,但是在某些情况下(比如函数定义有多行的时候) 并不总是会达到你想要的效果
+    尤其是在符合PEP8标准方面. 我们可以利用 indentpython.vim插件,来解决这个问题
+    Plugin 'vim-scripts/indentpython.vim'
+
+
+2:标记不必要的空白字符
+    - 我们希望避免出现多余的空白字符.可以让Vim帮我们标示出来,使其很容易发现并删除
+    - 这会将多余的空白字符标示出来，很可能会将它们变成红色突出
+
+
+3:支持 UTF-8 编码
+    - 大部分情况下, 进行Python开发时你应该使用UTF-8编码,尤其是使用Python 3 的时候.
+      确保Vim设置文件中有下面的命令
+      set encoding=utf-8
+
+4:自动补全
+    Bundle 'Valloric/YouCompleteMe'

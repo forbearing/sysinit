@@ -1,0 +1,89 @@
+1:水平分割窗口
+	:split
+	:sp
+	:split file		用另一个文件分割窗口
+	:sp file
+	:new			打开一个新的空窗口
+
+2:垂直分割:
+	:vsplit			注意不是:Vsplit
+	:vs file
+	:vertical new
+	:vnew
+
+3:关闭窗口
+	:close		关闭窗口(最后一个窗口不能关闭)
+	:quit	
+	:only		关闭所有其他窗口
+	ZZ
+
+4:窗口大小
+	3split file		指定窗口高度
+	CTRL-W +		扩大窗口
+	CTRL-W -		缩小窗口
+	CTRL-W{num} -	num 指定增加或减少当前光标所在窗口多少高度
+	{num}CTRL-W -
+	CTRL-W _		垂直最大化当前光标所在窗口高度
+	CTRL-W{num} _	设置当前光标所在窗口大小
+	{num}CTRL-W _
+	winheight		设置最小的期望高度,当切换到其他窗口时,如果窗口大小小于期望高度,就会增加窗口高度到期望高度l
+	winminheight	设置最小的"硬性"高度,使用"Ctrl-W _" 时,窗口不能低于的最小高度
+	winwidth
+	winminwidth
+	equalalways		所有的窗口在关闭或打开新窗口时总保持相同大小
+
+5:窗口跳转
+	CTRL-W h		跳转到左边窗口
+	CTRL-W j
+	CTRL-W k
+	CTRL-W l
+	CTRL-W t
+	CTRL-W b
+
+
+6:移动窗口
+	CTRL-H
+	CTRL-J
+	CTRL-K
+	CTRL-L
+
+7:对所有窗口执行命令
+	:qall			全部退出
+	:wall			全部保存
+	:wqall
+	:qall!
+	:vim -o 1.txt 2.txt 3.txt	为每一个文件开启一个窗口
+	:all			包为每一个缓冲文件打开一个窗口
+
+8:用vimdiff显示文件差异
+	vimdiff file1 file2
+	diffsplit file			和file文件水平分割作比较
+	vertical diffsplit file	和file文件垂直分割作比较
+	vertical diffpatch file
+	:set noscrollbind		关闭滚动绑定
+	]c				跳转到下一个差异点或修改点
+	[c				跳转到上一个差异点或修改点
+	diffput			dp,以光标所在文件为标准,使另外一个文件与自己相同
+	do				和dp相反
+	
+9:杂项
+	:set laststatus={0|1|2}
+		指定什么时候对最后一个窗口显示状态栏
+		0 -- 永远不
+		1 -- 只有用分割窗口的时候
+		2 -- 永远有
+	CTRL-W CTRL-^	在分割窗口编辑轮换文件
+	:set splitbelow		新窗口在下面,默认在上面
+	:set splitright		新窗口在右边,默认在左边
+	:leftabove {cmd}		当前窗口的左上方
+	:aboveleft {cmd}		同上
+	:rightbelow {cmd}		当前窗口的右下方
+	:belowright {cmd}		同上
+	:topleft {cmd}			整个窗口的最上方或最左边
+	:botright {cmd}			整个窗口的最下方或最右边
+
+9:标签页
+	:tabedit file			在新标签页中编辑文件
+	:tab split				建立一个相同的标签页
+	:tab help gt			在新标签页中显示gt的帮助信息
+	:tabonly				关闭当前除当前标签页以外的所哟标签页

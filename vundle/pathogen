@@ -1,0 +1,10 @@
+1:安装 Pathogen
+    pathogen 下载解压到 ~/.vim/autoload
+
+2:启用 Pathogen
+    execute pathogen#infect()
+    syntax on
+    filetype plugin indent on
+3:使用 Pathogen
+    在当前用户目录~/.vim/下新建bundle目录，将新安装插件放到该目录下后，Pathogen会自动在
+    bundle目录下生成对应插件子目录并使该插件生效

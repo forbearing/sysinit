@@ -1,0 +1,10 @@
+1:设置超过 80 长度提示
+	set colorcolumn=81
+2:显示特殊字符
+	set list
+	set unlist
+3:loadview
+	# nnoremap <leader>w :w<cr>:mkview<cr>
+	# inoremap <C-w> <esc>:w<cr>:mkview<cr>a
+	nnoremap <leader>l :loadview<cr>
+	nnoremap <leader>e :mkview<cr>

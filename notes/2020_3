@@ -1,0 +1,28 @@
+1:
+    1:vim 插件目前分为 *.vim 和 *.vba 两类,前者是传统格式的插件,实际上就是一个文本
+      文件,通常 someplugin.vim（插件脚本）与 someplugin.txt (插件帮助文件) 并存在一个
+      打包文件中,解包后将 someplugin.vim 拷贝到 ~/.vim/plugin/ 目录,someplugin.txt 
+      拷贝到 ~/.vim/doc/ 目录即可完成安装
+    2:可通过 :h someplugin 查看插件帮助信息
+    3:传统格式插件需要解包和两次拷贝才能完成安装,相对较繁琐,所以后来又出现了 *.vba 格式
+      插件,安装便捷,只需在 shell 中依次执行如下命令即可:
+        vim someplugin.vba
+        :so %
+        :q
+    4:不论是直接拷贝插件到目录,还是通过 *.vba 安装,都不便于插件卸载,升级,后来又出现了
+      管理插件的插件 vundle
+
+2:编译安装
+    git clone git@github.com:vim/vim.git
+    cd vim/
+    ./configure \
+        --with-features=huge \
+        --enable-pythoninterp \
+        --enable-rubyinterp \
+        --enable-luainterp \
+        --enable-perlinterp \
+        --with-python-config-dir=/usr/lib/python2.7/config/ \
+        --enable-gui=gtk2 --enable-cscope --prefix=/usr
+    # --enable-pythoninterp 等,分别表示支持 ruby, python, perl, lua 编写的插件
+make
+make install

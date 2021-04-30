@@ -1,0 +1,93 @@
+1:文件浏览器
+	:edit .				vim有个插件用来编辑一个目录
+	:Explore|<C-o>		返回文件浏览器
+	:Explore [dir]
+	:NetrwSettings		当前netrw设置的综合列表,带有帮助链接
+	
+	o			在当前窗口打开文件
+	t			在新标签打开文件
+	T			在新标签打开文件(sliently)
+	i			水平分割打开文件
+	gi			水平分割打开文件(preview)
+	s			垂直分割打开文件
+	gs			垂直分割打开文件(preview)
+
+	o			打开或关闭目录,打开文件
+	O			递归
+	x			关闭父级节点
+	X			关闭所有递归打开的子节点
+	e			Explore 光标下所在节点
+
+	p			光标移动到父节点
+	P			光标移动到根节点
+	K			光标移动到第一个子节点
+	J			光标移动到最后一个子节点
+	j|<C-J>		光标移动到下一个同级节点
+	k|<C-K>		光标移动到上一个同级节点
+
+	C			选择光标所在节点作为根节点
+	u			把上一级节点(目录)作为根节点
+	U			同上,并打开节点
+	r			刷新光标下目录
+	R			刷新当前根目录
+	m			显示菜单
+	cd			change the CWD to the selected dir
+	CD			change tree root to CWD
+
+	I			 hidden files (off)
+	f			 file filters (on)
+	F			 files (on)
+	B			 bookmarks (off)
+
+
+
+2:当前目录
+	:cd	/dir		改变当前目录
+	:cd -
+	:pwd			查看当前所在目录
+	:lcd /dir		窗口本地目录(local)
+		一份为二的两个窗口的当前目录一样,新窗口采用的当前目录成为本地目录
+
+
+3:查找文件
+	gf				跳转到指定文件
+	<C-W>f			开辟新窗口
+		如果文件没有绝对路径并且不再当前目录,Vim将利用'path'选项来查找文件
+	:set path+=/home/C/prog/include
+	:set path+=./proto
+	:set isfname	哪些字符可用于文件名,那些不可以
+	:find stdio.h	在path指定的目录下查找文件,并打开文件
+	:sfind stdio.h	k开辟新窗口
+	vim "+find stdio.h"
+
+
+4:缓冲区列表
+	缓冲区种类
+		激活 -- 显示在窗口内,并加载文本
+		隐藏 -- 不显示在窗口内,但加载文本
+		非激活 -- 不显示在窗口内,不加载文本
+	标志位
+		u		列表外缓冲区
+		%		当前缓冲区
+		#		轮换缓冲区
+		a		激活缓冲区,缓冲区被加载且显示
+		h		隐藏缓冲区,缓冲区被加载但不显示
+		=		只读缓冲区
+		-		不可改缓冲区
+		+		已修改缓冲区
+	:hide edit two.txt		隐藏缓冲区(可以暂时不保存文件)
+	:set hidden				可以不用保存文件而在各个缓冲区之间跳转
+	:buffers				查看缓冲区列表
+	:ls						同上
+	:buffer 2				编辑缓冲区
+	:buffer
+	:sbuffer 3				在新窗口打开一个缓冲区
+	:vertical sbuffer 3		垂直分割
+	:bnext					编辑下一个缓冲区
+	:bprevious				编辑下一个缓冲区
+	:bfirst					编辑第一个缓冲区
+	:blast					编辑最后一个缓冲区
+	:bdelete 3				从缓冲区列表中删除一个缓冲区
+		删除缓冲区后,Vim依然记得它,这个缓冲区实际上成立"列表外"缓冲区,
+		只是不再:buffers中, :buffers!可以看见
+	:bwipe					彻底删除缓冲区

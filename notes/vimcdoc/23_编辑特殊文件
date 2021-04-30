@@ -1,0 +1,64 @@
+1:DOS, Mac 和 Unix 文件
+	老式的电传打字机使用两个字符来另起新行,一个字符把滑动架移回首位(回车<CR>)
+	另一个字符把纸上移动一行(换行<LF>)
+	Unix是<LF>, Apple是<CR>, MS-DOS是<CR><LF>
+	Vim能使用的三种格式:
+		unix	<LF>
+		dos		<CR><LF>
+		mac		<CR>
+	:set fileformats=unix,dos		Vim先尝试使用Unix格式,其次尝试MS-DOS格式
+	:set fileformat?				显示当前使用的文件格式
+	:set fileformats+=mac			Vim会猜测文件格式,但可能会猜错
+	:edit ++ff=unix file.txt		强制格式
+		"++"告诉Vim后面的是选项名,以取代其默认值
+		"++ff"用于'fileformat选项,
+		也可以使用: "++format=dos" "++ff=mac"
+		"++enc"	<==> 'set encoding'
+	
+	:set fileformat=unix
+	:write
+		把其他格式的文件转换为UNIX格式文件
+
+
+2:互联网上的文件
+	访问因特网的文件要安装netrw才行
+	gf					目标为超链接时
+	<C-W> f
+	不同格式的超文本链接被识别为:
+		ftp://		使用ftp
+		rcp://		使用rcp
+		scp://		使用scp
+		http://		使用wget(只读)
+
+
+3:加密
+	vim -x file.txt
+	vim -x -n file.txt	不适用交换文件
+		交换文件是不加密的,没有交换文件,需要更勤快地存储文件
+	:set key=			更改密码或撤销密码
+	:X					更改密码或撤销密码(密码不可见)
+	:setlocal noswapfile	尽在swapfile
+	注意
+		1:文件在内存中是以明文存在的
+		2:小心 信息文件viminfo, 文本寄存器
+		3:如果要保证一个文件内容的安全,你必须只在一个不联网的可携带计算机上
+		  编辑这个问阿金,使用优良的加密工具,并且不用时,把你的计算机锁进一个
+		  保险箱
+
+
+4:二进制文件
+	vim -b datafile		设定了'binary选项,排除了所有的意外作用
+		'textwidth'设我0,免得为本行给擅自排版,
+		文件一律以Unix文件格式读取
+	:set display=uhex	二进制文件里面的很多字符是不可显示的,
+		用Hex格式显示它们的值
+	ga				显示光标下的字符值
+	:set nowrap		文件也许没有那么多的换行符,可以关闭'wrap'选项来获得总览的效果
+	g <C-G>			获取当前光标当前字节位置
+	333go			移动到文件中某个指定的字节
+	:%!xxd			把文件转换成十六进制(Vim把这些信息当做普通文件来看)
+	:%!xxd -r		反转
+	:%!xxd -b		转换成二进制
+
+
+6:压缩文件

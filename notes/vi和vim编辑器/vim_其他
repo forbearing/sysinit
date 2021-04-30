@@ -1,0 +1,40 @@
+1:编辑二进制文件:
+	1:
+		vim -b
+		:set binary
+	2:为了辅助二进制编辑并避免破坏文件的完整性:
+		textwidth与wrapmargin设置为0,以免vim在文件中Haru伪造的newline序列
+		modeline和expandtab不设置(nomodeline和noexpandtab),以免vim用tab增加
+		shiftwidth的空间,并避免vim在模式行(modeline)里解释命令,否则有可能设置
+		某些选项造成意外的作用
+
+2:编辑非ASCII字符:
+	:set digraph
+
+3:在其他地方编辑
+
+4:使用vim备份:
+	1:备份功能有两个选项控制: backup, writebackup
+	2:创建备份的方式与位置由四个选项控制:
+		backupdir	backupext	backupskip	backupcopy
+	3:不备份:
+		:set nobackup
+		:set nowritebackup
+	4:backupdir 备份文件的存放目录:
+		:backupdir=.		在当前目录创建备份
+		以逗号分割: backupdir=.,~/tmp,~/
+	5:backupskip 跳过的备份
+		backupskip=/tmp/*,/var/tmp/*,~/tmp/*
+	6:backupext 设置备份文件的后缀
+		backupext=~
+	7:backupcopy 创建备份的方式:
+		backupcopy=auto
+
+5:以HTML方式表现文本:
+	:runtime!syntax/2html.vim
+		不接受范围指定, 转换不包括背景颜色
+	:1,$TOhtml
+
+6:比较差异:
+	vimdiff file1 file2
+	vim -d file1 file2

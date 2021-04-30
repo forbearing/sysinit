@@ -1,0 +1,29 @@
+1:安装
+    将下载的Vundle.vim文件保存到 ~/.vim/bundle 即可完成Vundle的安装
+
+2:配置 vundle
+    set nocompatible               "去除VIM一致性，必须"
+    filetype off                   "必须"
+
+    "设置包括vundle和初始化相关的运行时路径"
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+
+    "启用vundle管理插件，必须"
+    Plugin 'VundleVim/Vundle.vim'
+
+    "在此增加其他插件，安装的插件需要放在vundle#begin和vundle#end之间"
+    "安装github上的插件格式为 Plugin '用户名/插件仓库名'"
+
+    call vundle#end()              
+    filetype plugin indent on      "加载vim自带和插件相应的语法和文件类型相关脚本，必须"
+
+
+
+功能
+    在.vimrc中跟踪和管理插件
+    安装特定格式的插件(a.k.a. scripts/bundle)
+    更新特定格式插件
+    通过插件名称搜索Vim scripts中的插件
+    清理未使用的插件
+    可以通过单一按键完成以上操作,详见interactive mode)

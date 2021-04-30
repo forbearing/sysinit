@@ -1,0 +1,70 @@
+1:条件执行:
+	1:
+		if
+		elseif
+		else
+		endif
+	2:
+		condition ? expr1 : expr2
+
+2:strftime()函数
+	strftime()有两个参数
+	第一个参数定义时间字符串的输出格式
+	第二个参数可选,是1970.1.1开始计算的秒数
+	strftime("%H")
+
+3:变量:
+	g:
+		全局变量,也就是能在任何地方被辨别
+	v:
+		vim变量,有vim控制,也是全局变量
+	l:
+		在函数内被辨别的变量,局部变量
+	a:
+		函数的参数
+	s: 
+		在来源的vim脚本里被辨别的变量
+	b:
+		在单一vim缓冲区里被辨别的变量
+	w:
+		在单一窗口里被辨别的变量
+	t:
+		在单一vim分页里被辨别的变量
+	1:当不加前缀时,在函数外定义默认为全局变量(g:),
+	在函数内定义,默认为局部变量(l:)
+	2:使用let命令指定变量值:
+		let g:linux = "hello linux"
+		let linux = "hello linux"
+	3:变量的使用:
+		&linux
+4:execute命令
+5:定义函数:
+	function MyFunction (arg1,arg2)
+	endfunction
+	1:vim自定义函数必须以大写字母开头
+	2:调用函数:
+		call MyFunction
+6:vim取巧:状态栏设置:
+	1:statusline的定义可以分为多行,只要第一个非空字符是反斜线,vim就会把这一行
+	视为上一行的延续
+	2:set status += \ %{SetTimeOfDay}
+7:数组:
+	let g:array = ["darkblue","morning","shine","evening"]
+8:通过脚本动态配置文件类型:
+	BufnewFIle				// 在vim开始编辑新文件时出发相关联的命令
+	BufReadPre				// 在vim移向新缓冲区前触发相惯量的命令
+	BufRead,BufReadPost		// 在编辑新文件时触相关联的命令,但需要读入文件之后
+	BufWrite,BufwritePre	// 把缓冲区的内容写入文件前触发命令
+	FileType				// 在设置filetype后触发命令
+	VimResized				// 在改变vim窗口尺寸后触发相关联的命令
+	WinEnter,WinLeave		// 分别进入窗口和离开窗口时触发相关联的命令
+	CursorMoved,CursorMovedI	// 光标进入正常模式,插入模式
+	1:命令格式:
+		autocmd [group] event [nested] command
+		例如:autocmd CursorMoveI * call CheckFileType()
+	2:CheckFileType()函数实现
+		function CheckFileType()
+			if &filetype == ""
+				filetype detect
+			endif
+		endfunction
