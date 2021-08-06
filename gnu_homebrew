@@ -1,0 +1,129 @@
+url
+    https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
+    https://www.lijiaocn.com/%E6%8A%80%E5%B7%A7/2017/05/16/gnu-tools-on-mac.html
+    https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
+
+
+install 
+    brew install autoconf bash binutils coreutils diffutils ed findutils flex gawk \
+        gnu-indent gnu-sed gnu-tar gnu-which gpatch grep gzip less m4 make nano \
+        screen watch wdiff wget
+
+
+coreutils provides:
+    [, b2sum, base32, base64, basename, basenc, cat, chcon, chgrp, chmod, chown, chroot, cksum, comm, cp, csplit, cut, date, dd, df, dir, dircolors, dirname, du, echo, env, expand, expr, factor, false, fmt, fold, groups, head, hostid, id, install, join, kill, link, ln, logname, ls, md5sum, mkdir, mkfifo, mknod, mktemp, mv, nice, nl, nohup, nproc, numfmt, od, paste, pathchk, pinky, pr, printenv, printf, ptx, pwd, readlink, realpath, rm, rmdir, runcon, seq, sha1sum, sha224sum, sha256sum, sha384sum, sha512sum, shred, shuf, sleep, sort, split, stat, stdbuf, stty, sum, sync, tac, tail, tee, test, timeout, touch, tr, true, truncate, tsort, tty, uname, unexpand, uniq, unlink, uptime, users, vdir, wc, who, whoami, yes
+
+ed provides:
+    ed, red
+
+gawk provides:
+    awk
+
+grep provides:
+    egrep, fgrep, grep
+
+gnu-sed provides:
+    sed
+
+gnu-tar provides:
+    tar
+
+make provides:
+    make
+
+findutils provides:
+    find, locate, updatedb, xargs
+
+
+paths
+    /usr/local/opt/coreutils/libexec/gnubin
+    /usr/local/opt/gnu-indent/libexec/gnubin
+    /usr/local/opt/gnu-tar/libexec/gnubin
+    /usr/local/opt/ed/libexec/gnubin
+    /usr/local/opt/grep/libexec/gnubin
+    /usr/local/opt/gnu-sed/libexec/gnubin
+    /usr/local/opt/gawk/libexec/gnubin
+    /usr/local/opt/make/libexec/gnubin
+    /usr/local/opt/findutils/libexec/gnubin
+    /usr/local/opt/gnu-which/libexec/gnubin:/usr/local/bin:/usr/bin:
+
+
+
+
+
+logs
+    ==> binutils
+    binutils is keg-only, which means it was not symlinked into /usr/local,
+    because Apple's CLT provides the same tools.
+
+    If you need to have binutils first in your PATH, run:
+      echo 'set -g fish_user_paths "/usr/local/opt/binutils/bin" $fish_user_paths' >> ~/.config/fish/config.fish
+
+    For compilers to find binutils you may need to set:
+      set -gx LDFLAGS "-L/usr/local/opt/binutils/lib"
+      set -gx CPPFLAGS "-I/usr/local/opt/binutils/include"
+
+    ==> coreutils
+    Commands also provided by macOS have been installed with the prefix "g".
+    If you need to use these commands with their normal names, you
+    can add a "gnubin" directory to your PATH from your bashrc like:
+      PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    ==> ed
+    All commands have been installed with the prefix "g".
+    If you need to use these commands with their normal names, you
+    can add a "gnubin" directory to your PATH from your bashrc like:
+      PATH="/usr/local/opt/ed/libexec/gnubin:$PATH"
+
+    ed is keg-only, which means it was not symlinked into /usr/local,
+    because macOS already provides this software and installing another version in
+    parallel can cause all kinds of trouble.
+
+    If you need to have ed first in your PATH, run:
+      echo 'set -g fish_user_paths "/usr/local/opt/ed/bin" $fish_user_paths' >> ~/.config/fish/config.fish
+
+    ==> findutils
+    All commands have been installed with the prefix "g".
+    If you need to use these commands with their normal names, you
+    can add a "gnubin" directory to your PATH from your bashrc like:
+      PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+    ==> flex
+    flex is keg-only, which means it was not symlinked into /usr/local,
+    because macOS already provides this software and installing another version in
+    parallel can cause all kinds of trouble.
+
+    If you need to have flex first in your PATH, run:
+      echo 'set -g fish_user_paths "/usr/local/opt/flex/bin" $fish_user_paths' >> ~/.config/fish/config.fish
+
+    For compilers to find flex you may need to set:
+      set -gx LDFLAGS "-L/usr/local/opt/flex/lib"
+      set -gx CPPFLAGS "-I/usr/local/opt/flex/include"
+
+    ==> gnu-indent
+    GNU "indent" has been installed as "gindent".
+    If you need to use it as "indent", you can add a "gnubin" directory
+    to your PATH from your bashrc like:
+
+        PATH="/usr/local/opt/gnu-indent/libexec/gnubin:$PATH"
+    ==> gnu-tar
+    GNU "tar" has been installed as "gtar".
+    If you need to use it as "tar", you can add a "gnubin" directory
+    to your PATH from your bashrc like:
+
+        PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+    ==> gnu-which
+    GNU "which" has been installed as "gwhich".
+    If you need to use it as "which", you can add a "gnubin" directory
+    to your PATH from your bashrc like:
+
+        PATH="/usr/local/opt/gnu-which/libexec/gnubin:$PATH"
+    ==> grep
+    All commands have been installed with the prefix "g".
+    If you need to use these commands with their normal names, you
+    can add a "gnubin" directory to your PATH from your bashrc like:
+      PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+    ==> make
+    GNU "make" has been installed as "gmake".
+    If you need to use it as "make", you can add a "gnubin" directory
+    to your PATH from your bashrc like:
+
+        PATH="/usr/local/opt/make/libexec/gnubin:$PATH"

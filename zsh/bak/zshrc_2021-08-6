@@ -97,8 +97,8 @@ themes
 colored-man-pages
 cp
 z
-autojump
-per-directory-history
+#autojump
+#per-directory-history
 safe-paste
 sudo
 history-substring-search
@@ -188,7 +188,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # autojump
-#[ -f ~/.autojump/share/autojump/autojump.zsh ] && . ~/.autojump/share/autojump/autojump.zsh || . /usr/local/share/autojump/autojump.zsh
+[ -f ~/.autojump/share/autojump/autojump.zsh ] && . ~/.autojump/share/autojump/autojump.zsh || . /usr/local/share/autojump/autojump.zsh
 # ansible
 #alias ansible='ansible -i /usr/local/etc/ansible/hosts'
 # zplug

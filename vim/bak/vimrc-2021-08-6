@@ -1,0 +1,669 @@
+" https://zhuanlan.zhihu.com/p/267856388                    VIM学习笔记 插件列表(Plugin)
+" https://github.com/amix/vimrc                             The ultimate Vim configuration (vimrc)
+" https://github.com/akrawchyk/awesome-vim                  Awesome vim, The Vim plugin shortlist
+
+set nocompatible
+filetype on
+let mapleader = ';'
+
+" 设置运行环境的路径"
+set rtp+=~/.vim/bundle/Vundle.vim
+" 初始化vundle"
+call plug#begin('~/.vim/plugged')
+" vundle 插件管理器自己的这个插件，一定要打开
+Plug 'gmarik/Vundle.vim'
+
+
+"autoload vim view
+Plug 'vim-scripts/restore_view.vim'
+set viewoptions=cursor,folds,slash,unix
+let g:skipview_files = ['*\.vim']
+"set foldmethod=marker
+set foldmethod=manual
+
+
+" -------------------------------------------------------------------------------------
+" 建议先安装 nerd-font 和 powerline 字体，否则可能会出现乱码
+"vim-airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline_theme="dark"
+"let g:airline_theme="molokai"
+"let g:airline_theme="violet"
+"let g:airline_theme="kolor"
+"let g:airline_theme="murmur"
+let g:airline_theme="badwolf"
+" Usage:
+"   :AirlineTheme                   Display Current Airline Theme
+"   :AirlineTheme {theme-name}      Use specific theme
+
+" Simple tmux statusline generator with support for powerline symbols and statusline / airline / lightline integratio
+"Plug 'edkolev/tmuxline.vim' 
+" Usage
+"   use vim's statusline colors
+"       :Tmuxline vim_statusline_1
+"       :Tmuxline vim_statusline_2
+"       :Tmuxline vim_statusline_3
+"   use vim-airline colors
+"       :Tmuxline airline
+"       :Tmuxline airline_insert
+"       :Tmuxline airline_visual
+"   use lightline.vim colors
+"       :Tmuxline lightline
+"       :Tmuxline lightline_insert
+"       :Tmuxline lightline_visual
+"let g:airline#extensions#tmuxline#enabled = 1                   " 0 is disabled plugin
+" Stock preset
+"let g:tmuxline_preset = 'nightly_fox'
+"let g:tmuxline_preset = 'tmux'
+"let g:tmuxline_preset = 'full'
+" Theme
+"let g:tmuxline_theme = 'iceberg'
+"let g:tmuxline_theme = 'zenburn'
+"let g:tmuxline_theme = 'jellybeans'
+"let g:tmuxline_preset = {
+        "\'a'    : '#S',
+        "\'b'    : '#W',
+        "\'c'    : '#H',
+        "\'win'  : '#I #W',
+        "\'cwin' : '#I #W',
+        "\'x'    : '%a',
+        "\'y'    : '#W %R',
+        "\'z'    : '#H'}
+" -------------------------------------------------------------------------------------
+
+
+
+"Plug 'preservim/tagbar'
+"nnoremap <leader>t :TagbarToggle<CR>
+"let g:tagbar_ctags_bin = 'ctags'
+""let g:tagbar_width = 60                         " 定义 tagbar 宽度
+
+
+" Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
+Plug 'luochen1990/rainbow'
+let g:rainbow_active = 0                        " set to 0 if you want to enable it later via :RainbowTogglek
+
+
+" Syntax checking hacks for vim
+"Plug 'vim-syntastic/syntastic'
+set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0               " 1 is automatic check syntas, SyntasticToggleMode can toggle
+let g:syntastic_check_on_wq = 0
+
+
+" -------------------------------------------------------------------------------------
+"" A tree explorer plugin for vim.
+"Plug 'preservim/nerdtree'
+"nnoremap <leader>i :NERDTreeFocus<CR>
+"nnoremap <leader>i :NERDTreeToggle<CR>
+""autocmd VimEnter * NERDTree                     " Start NERDTree and leave the cursor in it.
+""autocmd VimEnter * NERDTree | wincmd p          " Start NERDTree and put the cursor back in the other window.
+"autocmd BufWinEnter * silent NERDTreeMirror     " Open the existing NERDTree on each new tab.
+"let g:NERDTreeDirArrowExpandable = '▸'          " change the default arrows
+"let g:NERDTreeDirArrowCollapsible = '▾'
+"let NERDTreeAutoCenter=1
+"let NERDTreeBookmarksFile=$VIM.'\Data\NerdBookmarks.txt'
+"let NERDTreeMouseMode=2
+"let NERDTreeShowBookmarks=1
+"let NERDTreeShowFiles=1
+"let NERDTreeShowHidden=1
+"let NERDTreeShowLineNumbers=1
+"let NERDTreeWinPos='left'
+"let NERDTreeWinSize=31
+"map <F3> :NERDTreeMirror<CR>
+"map <F3> :NERDTreeToggle<CR>
+" -------------------------------------------------------------------------------------
+
+
+" This is a Vim plugin to support Python development using the Conda environment manager.
+"Plug 'cjrh/vim-conda'
+"let g:conda_startup_msg_suppress = 1
+
+
+"需要先安装好 gcc, cmake, git, ctags, --js-completer 需要 npmk
+"Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 install.py --clangd-completer' }
+"Plug 'Valloric/YouCompleteMe',{'do':'python3 install.py --clang-completer'}
+"Plug 'Valloric/YouCompleteMe',{'do':'python3 install.py --cs-completer'}
+"Plug 'Valloric/YouCompleteMe',{'do':'python3 install.py --go-completer'}
+"Plug 'Valloric/YouCompleteMe',{'do':'python3 install.py --rust-completer'}
+"Plug 'Valloric/YouCompleteMe',{'do':'python3 install.py --java-completer'}
+"Plug 'Valloric/YouCompleteMe',{'do':'python3 install.py --all'}
+"Plug 'ycm-core/YouCompleteMe'
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_path_to_python_interpreter = 'python3'
+" 确保了在你完成操作之后,自动补全窗口不会消失"
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+
+" VimTeX is a modern Vim and neovim filetype and syntax plugin for LaTeX files.
+"Plug 'lervag/vimtex'
+
+
+" 缩进标线
+Plug 'Yggdroot/indentLine'
+"let g:indentLine_noConcealCursor = 1
+"let g:indentLine_char = '|'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']   " 不同的缩进层级设置不同的缩进线
+let g:indentLine_enabled = 1                        " 关闭插件设置为0
+let g:indentLine_setColors = 0                      " 0 表示恢复使用配色方案中的 conceal color
+let g:indentLine_color_term = 200                   " 指定 indentLine 插件显示的缩进指示线的颜色
+
+
+
+"代码对齐
+Plug 'godlygeek/tabular'
+" :Tab/:
+
+
+"补全 HTML/XML 标签
+Plug 'docunext/closetag.vim'
+let g:closetag_html_style=1
+
+
+"智能折叠
+""Plug 'tmhedberg/SimpylFold'
+"set foldmethod=indent
+""let g:SimpylFold_docstring_preview = 1
+""let g:SimpylFold_fold_docstring = 1
+""let g:SimpylFold_fold_import = 1
+
+
+" Python 语法自动补全
+" 跳转到定义： <leader>d
+" 显示Python文档(Pydoc)： K
+" 重命名：<leader>r
+" 展示某个变量的使用方法：<leader>n
+" 打开某个模块：:Pyimport os (打开 os 模块)
+"Plug 'davidhalter/jedi-vim'
+
+
+"括号/引号自动补齐
+Plug 'Raimondi/delimitMate'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
+let g:AutoPairsMapBS = 1            " 删除
+"let g:AutoPairsMapCR = 1            "  ENTER 键(回车键)映射为换行并自动缩进,默认值1
+"let g:AutoPairsMapSpace = 1
+
+" 高效率注释插件
+Plug 'preservim/nerdcommenter'
+" [count]<leader>cc         注释从当前行往下数的 count 行
+" [count]<leader>cu         取消注释从当前行往下数的 count 行
+" [count]<leader>ci         切换从当前行往下数的 count 行的注释状态
+" <leader>c$                注释掉从当前光标所在位置到行尾的剩下内容
+" <leader>cA                在光标所在当前行行尾添加注释符号并进入 Vim 的插入模式
+
+" 可视化标签
+Plug 'kshenoy/vim-signature'
+
+
+" 模糊查找神器,性能超越ctrlp
+""Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+
+
+" A better JSON for Vim: distinct highlighting of keywords vs values, 
+" JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
+"Plug 'elzr/vim-json'
+
+ 
+" -------------------------------------------------------------------------------------
+" Run your favorite search tool from Vim, with an enhanced results list.
+" This plugin was designed as a Vim frontend for the programmer's search tool
+" ack. ack can be used as a replacement for 99% of the uses of grep. The
+" plugin allows you to search with ack from within Vim and shows the results
+" in a split window.
+Plug 'mileszs/ack.vim'
+"不自动打开第一个匹配的文件
+nnoremap <Leader>a :Ack!<Space>
+let g:ackhighlight = 1                          " 高亮搜索关键词
+"let g:ack_qhandler = "botright copen 15"       " 修改快速预览窗口高度为15
+"let g:ack_autoclose = 1                        " 在QuickFix窗口使用快捷键以后，自动关闭QuickFix窗口
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep --nogroup --column'
+endif
+if executable('rg')
+    let g:ackprg = 'rg --vimgrep'
+endif
+"不自动打开第一个匹配的文件
+nnoremap <Leader>a :Ack!<Space>
+"不自动打开第一个匹配的文件
+nnoremap <Leader>a :Ack!<Space>
+" QuickFix 窗口快捷键
+"   ?   显示键盘映射
+"   o   打开文件
+"   O   打开文件关闭QuickFix窗口
+"   go  预览文件，但焦点留在ack搜索结果上
+"   t   在新标签页打开文件
+"   T   在新标签页打开但不切换到那个标签页
+"   h   分屏打开
+"   H   分屏打开，但焦点停留在ack搜索结果上
+"   v   竖直分屏打开
+"   gv  竖直分屏打开，但焦点停留在ack搜索结果上
+"   q   关闭QuickFix窗口
+" -------------------------------------------------------------------------------------
+
+
+"Quickly and easily switch between buffers. This plugin can be opened with <leader+o>
+"Plug 'vim-scripts/bufexplorer.zip'
+
+
+" Fuzzy file, buffer, mru and tag finder. It's mapped to <Ctrl+F>
+"Plug 'ctrlpvim/ctrlp.vim'
+
+
+" -------------------------------------------------------------------------------------
+" ale: 是异步静态检测插件。减少代码缺陷，写出更规范和干净的代码
+" vim-autoformat: 代码格式化插
+" ale 使用的是 eslint 来检查 js 代码，使用 pylint 检查 python 代码
+" Autoformat 使用 prettier 格式化 js 代码，使用 autopep8 来格式化 python 代码
+"   for python
+"       pip install pylint
+"       pip install autopep8
+"   for javascript
+"       npm install -g eslint
+"       npm install -g prettier
+"Plug 'dense-analysis/ale'
+"Plug 'Chiel92/vim-autoformat'
+"nnoremap <leader>f :Autoformat<CR>
+" 自定义 ale 提示符
+"let g:ale_sign_error = '✗'
+"let g:ale_sign_warning = '⚡'
+
+
+
+" -------------------------------------------------------------------------------------
+" Highlights configuration files for nginx
+"Plug 'vim-scripts/nginx.vim'
+" Improved nginx vim plugin (incl. syntax highlighting)
+Plug 'chr4/nginx.vim'
+
+
+" Syntax highlighting for systemd service files in Vim.
+Plug 'Matt-Deacalion/vim-systemd-syntax'
+
+
+
+" -------------------------------------------------------------------------------------
+"  vim syntax for helm templates (yaml + gotmpl + sprig + custom)
+Plug 'towolf/vim-helm'
+
+
+
+" -------------------------------------------------------------------------------------
+" Language Support
+" Plug 'HerringtonDarkholme/yats.vim'       "Yet Another TypeScript Syntax, The most advanced TypeScript Syntax Highlighting in Vim
+" Plug 'pangloss/vim-javascript'            "Vastly improved Javascript indentation and syntax support in Vim.
+" Plug 'MaxMEllon/vim-jsx-pretty'           "[Vim script] JSX and TSX syntax pretty highlighting for vim.
+" Plug 'elzr/vim-json'                      "A better JSON for Vim
+" Plug 'itchyny/lightline.vim'              "A light and configurable statusline/tabline plugin for Vi, alternative to vim-airline
+
+
+
+" -------------------------------------------------------------------------------------
+" 可以快速对齐的插件
+Plug 'junegunn/vim-easy-align'
+" 有道词典在线翻译
+"Plug 'ianva/vim-youdao-translater'
+
+
+
+
+" -------------------------------------------------------------------------------------
+"  Go development plugin for Vim
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+
+
+" -------------------------------------------------------------------------------------
+" Language agnostic vim plugin for folding and motion based on indentation.
+"Plug 'pseewald/vim-anyfold'
+"[[ and ]] to navigate to the beginning and end of the current
+"Use ]k and [j to navigate to the end of the previous block and to the beginning of the next block.
+"AnyFoldActivate        Active plugin
+"foldmethod=indent
+
+
+
+" Efficient way to edit remote files on multiple environments with Vim.
+Plug 'zenbro/mirror.vim'
+
+
+
+" -------------------------------------------------------------------------------------
+"  Modern performant generic finder and dispatcher for Vim and NeoVim
+"Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+
+
+"主题========================================================"
+"Plug 'jnurmine/Zenburn'                 " colorscheme zenburn
+"Plug 'morhetz/gruvbox'                  " colorscheme gruvbox
+"Plug 'mhinz/vim-janah'                  " colorcolumn janah
+"Plug 'nanotech/jellybeans.vim'          " colorscheme jellybeans
+"Plug 'jonathanfilip/vim-lucius'         " colorscheme lucius
+Plug 'tomasr/molokai'                   " colorscheme molokai
+"Plug 'mhartington/oceanic-next'         " colorscheme OceanicNext
+"Plug 'kabbamine/yowish.vim'             " colorscheme yowish
+Plug 'arzg/vim-colors-xcode'            " colorscheme xcodedark  xcodedarkhc  xcodelight  xcodelighthc  xcodewwdc
+Plug 'Mcmartelle/vim-monokai-bold'      " colorscheme monokai-bold
+"Plug 'jdsimcoe/abstract.vim'            " colorscheme abstract
+"Plug 'romainl/Apprentice'               " colorscheme apprentice
+"Plug 'jacoborus/tender.vim'             " colorscheme tender
+"Plug 'joshdick/onedark.vim'             " colorscheme onedark; let g:airline_theme='onedark'
+"Plug 'cocopon/iceberg.vim'              " colorscheme iceberg
+"Plug 'ajmwagar/vim-deus'                " colorscheme deus
+"Plug 'patstockwell/vim-monokai-tasty'   " colorscheme vim-monokai-tasty
+"Plug 'wadackel/vim-dogrun'              " colorscheme dogrun
+"Plug 'yuttie/hydrangea-vim'             " colorscheme hydrangea
+"Plug 'glepnir/oceanic-material'         " colorscheme oceanic_material
+"Plug 'liuchengxu/space-vim-theme'       " colorscheme space_vim_theme
+"Plug 'liuchengxu/space-vim-dark'        " colorscheme space-vim-dark
+Plug 'NLKNguyen/papercolor-theme'       " colorscheme PaperClolor
+"Plug 'junegunn/seoul256.vim'            " colorscheme seoul256; colorscheme seoul256-light
+"Plug 'jacoborus/tender.vim'             " colorscheme tender
+"Plug 'arcticicestudio/nord-vim'         " colorscheme nord
+"Plug 'ayu-theme/ayu-vim'                " colorscheme ayu
+"Plug 'kyoz/purify', {'rtp': 'vim'}      " colorscheme purify
+Plug 'drewtempelmeyer/palenight.vim'    " colorscheme palenight
+Plug 'dracula/vim', { 'as': 'dracula' } " colorscheme dracula
+"Plug 'chriskempson/vim-tomorrow-theme'  " colorscheme Tomorrow-Night-Eighties | Tomorrow-Night
+"Plug 'atelierbram/vim-colors_atelier-schemes'       " colorscheme Atelier_ForestDark | Atelier_HeathDark
+"Plug 'chriskempson/base16-vim'
+
+
+
+"所有的插件都应该在这一行之前" call vundle#end() 
+call plug#end()
+filetype plugin indent on
+
+"有一些网站可以帮组找到适合的vim插件:"
+    "http://www.vim-scripts.org"
+    "http://www.vimawesome.com"
+    "https://github.com"
+"默认情况下vundle将从github.com或者vim-scripts.org下载安装插件,你可以改变这个默认的行为"
+    "从github安装插件: Plugin 'user/plugin' "
+    "从http://vim-scropts.org/vim/scripts.html处安装: Plugin 'plugin_name' "
+    "从另一个git仓库中安装: Plugin 'git://git.another_repo.com/plugin' "
+    "从本地文件中安装: Plugin 'file:///home/user/path/to/plugin' "
+"你同可以定制其他东西,例如你的插件的运行时的路径,当你自己在编写一个插件时,或者你想从其他目录而不是~/.vim目录中加载插件时,这样做就非常有用"
+
+"================================================================
+
+
+"2: 基本
+set pastetoggle=<F3>
+set nocompatible
+set wildmenu                " vim 自身命令行模式智能补全
+syntax on                   " 允许用指定语法高亮配色方案替换默认方案
+syntax enable               " 开启语法高亮功能
+
+set nu
+""set relativenumber        " 设置相对行号
+
+set tabstop=4               " 编辑时, 制表符占用空格数
+set softtabstop=4           " 让 vim 把连续数量的空格视为一个制表符
+set shiftwidth=4            " 格式化时, 制表符占用空格数
+set expandtab               " 将制表符扩展为空格
+filetype indent on          " 自适应不同语言的智能缩进
+" retab: 让vim 按上述规则重新处理制表符与空格关系
+
+set autoindent              " 自动换行
+set nosmartindent
+set nocindent
+
+set incsearch               " 搜索动态显示
+set hlsearch                " 搜索高亮显示
+set ignorecase              " 搜索忽略大小写
+set smartcase               " 智能搜索
+
+""set mouse=a                 " 支持鼠标
+
+
+
+
+"2.1: 设置前缀键
+let mapleader = ';'
+
+"2.2: 保存和退出
+nnoremap <leader>w :w<cr>
+nnoremap <leader>W :w<cr>
+nnoremap <leader>q :q!<cr>
+nnoremap <leader>Q :q!<cr>
+inoremap <C-w> <esc>:w<cr>a
+inoremap <C-d> <esc>:q!<cr>
+nnoremap <C-d> :q!<cr>
+
+
+"2.3: 插入模式下的移动
+inoremap <C-h> <C-o>h
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-l> <C-o>l
+inoremap <C-c> <C-o>b
+inoremap <C-v> <C-o>w
+inoremap <C-e> <C-o>I
+inoremap <C-f> <C-o>$
+
+"inoremap ( ()<esc>i
+"inoremap [ []<esc>i
+"inoremap { {}<esc>i
+"inoremap " ""<esc>i
+
+"2.4: vim 标签, 多文件编辑
+nnoremap <leader>n :tabnew<cr>
+nnoremap <leader>N :tabnew<cr>
+nnoremap <leader>j :tabp<cr>
+nnoremap <leader>J :tabp<cr>
+nnoremap <leader>k :tabn<cr>
+nnoremap <leader>K :tabn<cr>
+nnoremap <leader>1 :tabn1<cr>
+nnoremap <leader>2 :tabn2<cr>
+nnoremap <leader>3 :tabn3<cr>
+nnoremap <leader>4 :tabn4<cr>
+nnoremap <leader>5 :tabn5<cr>
+nnoremap <leader>6 :tabn6<cr>
+nnoremap <leader>7 :tabn7<cr>
+nnoremap <leader>8 :tabn8<cr>
+nnoremap <leader>9 :tabn9<cr>
+nnoremap <leader>0 :tabn0<cr>
+
+"2.5: vim 文件缓存, 多文件编辑
+""nnoremap <C-n> :bNext<cr>
+""nnoremap <C-p> :bprevious<cr>
+""nnoremap <leader>l :loadview<cr>
+""nnoremap <leader>e :mkview<cr>
+nnoremap <C-n> :bn<cr>
+nnoremap <C-p> :bp<cr>
+
+"2.6: vim 窗口分割, 多文件编辑移动
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+"nnoremap <leader>l <C-W>l
+"nnoremap <leader>h <C-W>h
+"nnoremap <leader>j <C-w>j
+"nnoremap <leader>k <C-w>k
+
+"2.7: 复制粘贴
+vnoremap <leader>y "+y      
+" 设置快捷键将选中文本块复制到系统粘贴板
+nmap <leader>p "+p          
+" 设置快捷键将系统粘贴板内容复制到 vim
+
+"2.8: GUI 设置: UX 讲究的是内容至上: 
+set gcr=a:block-blinkon0        " 禁止光标闪烁
+set guioptions-=l               " 禁止显示滚动条
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+set guioptions-=m               " 禁止显示菜单和工具条
+set guioptions-=T
+
+"2.9: 添加辅助信息
+set laststatus=2                " 总显示状态栏
+set ruler                       " 显示光标当前位置
+set cursorline                 " 高亮显示当前行
+set cursorcolumn               " 高亮显示当前列
+"set visualbell                 " 闪烁
+set nowrap                      " 禁止折行, 代码折行不美观
+set showmatch                   " 显示括号匹配
+
+"2.10: 代码折叠
+set foldmethod=syntax
+set nofoldenable                " 启动 vim 时关闭折叠代码
+" manual:   手动建立折叠
+" indent:   基于缩进进行折叠
+" syntax:   基于语法进行折叠
+" diff:     未更改为本构成折叠
+
+
+"3: 主题
+"colorscheme ayu"                    " ***
+"set background=light
+""set termguicolors     " enable true colors support
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+
+"colorscheme purify                 " ***
+"set background=dark
+"syntax on
+"let g:airline_theme='purify'
+
+set background=dark
+""colorscheme molokai
+""colorscheme  gruvbox
+""colorscheme janah
+""colors zenburn
+"colorscheme abstract
+"colorscheme apprentice
+"colorscheme tender
+"colorscheme deus
+"colorscheme dogrun
+"colorscheme hydrangea
+"colorscheme yowish
+"colorscheme jellybeans
+"colorscheme oceanic_material
+"colorscheme space_vim_theme
+"colorscheme vim-monokai-tasty
+"colorscheme xcodelight
+"colorscheme seoul256-light
+"colorscheme tender
+
+"colorscheme xcodedark              " *****
+"colorscheme palenight              " ****
+"colorscheme dracula                 " ****
+
+colorscheme PaperColor              " *****
+"set background=dark
+set background=light
+set t_Co=256
+let g:airline_theme='papercolor'
+let g:lightline = { 'colorscheme': 'PaperColor' }
+
+
+
+
+"4.1: 模板文件"
+"autocmd BufNewFile *.c 0r ~/.vim/templates/c.tpl
+"autocmd BufNewFile *.php 0r ~/.vim/templates/php.tpl
+"autocmd BufNewFile *.html 0r ~/.vim/templates/html.tpl
+"autocmd BUfNewFile *.py 0r ~/.vim/templates/py.tpl
+"autocmd BUfNewFile *.sh 0r ~/.vim/templates/sh.tpl
+
+
+"4.2: 配置文件立即自动生效
+"autocmd BufWritePost $MYVIMRC source $MYVIMRC
+autocmd BufWritePost source ~/.vimrc
+"自动保存
+"let g:auto_save = 1
+"let g:auto_save_events = ["InsertLeave", "TextChanged", "TextChangedI", "CursorHoldI", "CompleteDone"]
+"autocmd TextChanged,TextChangedI <buffer> silent write
+
+
+
+filetype plugin indent on
+set colorcolumn=81
+set expandtab
+"noremap <C-S-i> <esc>0i#<esc>j
+
+
+
+" Modified 2020-2-28
+set encoding=utf-8
+filetype on
+filetype plugin on
+filetype plugin indent on
+syntax on
+filetype plugin indent on
+set colorcolumn=88
+set expandtab
+
+
+
+" Modified 2020-3
+
+set encoding=utf-8
+filetype on
+filetype plugin on
+filetype plugin indent on
+syntax on
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+""    \ set textwidth=87 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+
+au BufNewFile,BufRead *.js,*.html,*.css,*.yml,*.yaml
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    ""\ set textwidth=87 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+
+" 记住浏览位置
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+set backspace=indent,eol,start
+
+
+" foldmethod
+set foldmethod=manual
+
+
+" 解决 tmux 中 vim 主题丢失问题
+" set background=dark
+set t_Co=256
+" tmux 中设置
+" set -g default-terminal "screen-256color"
+
+
+" 按 <C-R> 执行当前 Python 代码"
+filetype plugin on
+map <C-r> :call PRUN()<CR>
+func! PRUN()
+    exec "w" 
+    if &filetype == 'python'
+        exec "!python %"
+    endif
+endfunc
+
+
+" 设置 vimrc 修改保存后立刻生效，不用在重新打开
+"autocmd BufWritePost $MYVIMRC source $MYVIMRC
+filetype plugin indent on                   " 启用自动补全
+au InsertLeave *.go,*.sh,*.php write        "推出插入模式，指定类型的文件自动保存
+

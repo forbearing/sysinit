@@ -63,6 +63,10 @@ Plugins
         git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/plugins/zsh-history-substring-search
         plugins={ zsh-history-substring-search }
 
+    zsh-completions
+        git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+
+
 
 
 powerlevel10k
